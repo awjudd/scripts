@@ -1,7 +1,7 @@
 /**
  * @author: Andrew Judd
  * @reference: http://blog.andrewjudd.ca/2012/11/programmatically-determining-space-transaction-log/
- * @link: http://scripts.andrewjudd.ca/sql/t-sql/transaction-log.sql
+ * @link: https://github.com/awjudd/scripts/blob/master/sql/t-sql/transaction-log.sql
  * @version: 1
  * @description: Programmatic way of determining what queries are using up the most transaction log space
  */

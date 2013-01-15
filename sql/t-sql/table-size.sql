@@ -1,3 +1,10 @@
+/**
+ * @author: Andrew Judd
+ * @reference: http://blog.andrewjudd.ca/2012/07/sql-server-finding-table-sizes-programmatically/
+ * @link: https://github.com/awjudd/scripts/blob/master/sql/t-sql/table-size.sql
+ * @version: 1
+ * @description: Programmatic way of determining the size of each of the tables in a database
+ */
 SET NOCOUNT ON
 
 DBCC UPDATEUSAGE(0)
