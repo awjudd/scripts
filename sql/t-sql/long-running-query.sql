@@ -1,3 +1,15 @@
+/**
+ * @author: Andrew Judd
+ * @reference: http://blog.andrewjudd.ca/2012/04/determining-long-running-queries-programmatically-v2/
+ * @link: https://github.com/awjudd/scripts/blob/master/sql/t-sql/long-running-query.sql
+ * @version: 2
+ * @description: Programmatic way of viewing all of the long running queries on a server including the following information:
+ *   - Who is running the query?
+ *   - Where is the server running from?
+ *   - How long the query has been running for
+ *   - How many threads the query has spooled
+ *   - The query
+ */
 DECLARE	@spid INT ,
 	@stmt_start INT ,
 	@stmt_end INT ,
