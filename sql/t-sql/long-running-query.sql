@@ -9,6 +9,7 @@
  *   - How long the query has been running for
  *   - How many threads the query has spooled
  *   - The query
+ *  Works best if used as a sysadmin on the database server.
  */
 DECLARE	@spid INT ,
 	@stmt_start INT ,
