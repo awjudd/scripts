@@ -37,7 +37,7 @@ do
     echo "Copying files to: $SERVER"
     $SCP -P$SSH_PORT "$TMP_DIR/"$FILTER $SSH_USERNAME@$SERVER:$SSH_REMOTE_DIRECTORY
 
-    # Check if there was a pre-execution hook
+    # Check if there was a post-execution hook
     if [ -n "$SSH_POST_HOOK" ]; then
         echo "Executing post-execution hook on: $SERVER"
         $SSH -p$SSH_PORT $SSH_USERNAME@$SERVER "$SSH_POST_HOOK"
