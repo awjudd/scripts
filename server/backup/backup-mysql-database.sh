@@ -26,13 +26,14 @@ fi
 mkdir --parents "$TMP_DIR"
 
 # Decide which command to run, either to dump a specific database, or all fo them
-if [ -z $DATABASE ]; then
+if [ -z "$DATABASE" ]; then
     # No database selected, so dump all of the databases
-    echo 'test'
-else
-    # At least 1 database was selected, so dump it
-    for DB in $DATABASE
-    do
-        $MYSQLDUMP --force --opt --user=$USERNAME --password=$PASSWORD --databases $DB > "$TMP_DIR/$DB.sql"
-    done
+    DATABASE=`$MYSQL --user=$USERNAME --password=$PASSWORD -e "SHOW DATABASES;" | grep -Ev "(Database|information_schema)"`    
 fi
+
+# At least 1 database was selected, so dump it
+for DB in $DATABASE
+do
+    $MYSQLDUMP --force --opt --user=$USERNAME --password=$PASSWORD --databases $DB | gzip > "$TMP_DIR/$DB.sql.gz"
+done
+
