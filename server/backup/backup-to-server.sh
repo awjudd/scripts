@@ -8,7 +8,10 @@ SSH_SERVERS=
 
 # Hooks for pre and post processing on the server
 SSH_PRE_HOOK=
+SSH_PRE_HOOK_PARAMETERS=
 SSH_POST_HOOK=
+SSH_POST_HOOK_PARAMETERS=
+SSH_HOOK_PARAMETERS=
 
 # Commands required
 SSH=/usr/bin/ssh
@@ -31,7 +34,7 @@ do
     # Check if there was a pre-execution hook
     if [ -n "$SSH_PRE_HOOK" ]; then
         echo "Executing pre-execution hook on: $SERVER"
-        $SSH -p$SSH_PORT $SSH_USERNAME@$SERVER "$SSH_PRE_HOOK"
+        $SSH -p$SSH_PORT $SSH_USERNAME@$SERVER "$SSH_PRE_HOOK" $SSH_HOOK_PARAMETERS $SSH_PRE_HOOK_PARAMETERS
     fi
 
     echo "Copying files to: $SERVER"
@@ -40,6 +43,6 @@ do
     # Check if there was a post-execution hook
     if [ -n "$SSH_POST_HOOK" ]; then
         echo "Executing post-execution hook on: $SERVER"
-        $SSH -p$SSH_PORT $SSH_USERNAME@$SERVER "$SSH_POST_HOOK"
+        $SSH -p$SSH_PORT $SSH_USERNAME@$SERVER "$SSH_POST_HOOK" $SSH_HOOK_PARAMETERS $SSH_POST_HOOK_PARAMETERS
     fi
 done
