@@ -15,6 +15,11 @@ SSH=/usr/bin/ssh
 SCP=/usr/bin/scp
 FILTER="*.gz"
 
+# Check if a value was provided for the temporary directory
+if [ -z "$TMP_DIR" ]; then
+    TMP_DIR=/tmp/
+fi
+
 # Check if the user provided a config file
 if [ -n "$1" -a -e "$1" ]; then
     source "$1"

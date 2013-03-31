@@ -8,18 +8,17 @@ DATABASE=
 # Define all of the files to stage the data to
 TMP_DIR=/tmp/database
 
+# Define the helper script to handle the processing of the file
+BACKUP_SCRIPT=./backup-to-server.sh
+
 # Full links to the commands
 MYSQLDUMP="/usr/bin/mysqldump"
 MYSQL="/usr/bin/mysql"
+SH=/bin/sh
 
 # Check if the user provided a config file
 if [ -n "$1" -a -e "$1" ]; then
     source "$1"
-fi
-
-# Check if the user provided a staging path
-if [ -d "$2" ]; then
-    TMP_DIR="$2"
 fi
 
 # Make sure the temporary directory exists
@@ -37,3 +36,9 @@ do
     $MYSQLDUMP --force --opt --user=$USERNAME --password=$PASSWORD --databases $DB | gzip > "$TMP_DIR/$DB.sql.gz"
 done
 
+if [ -n "$BACKUP_SCRIPT" -a "$BACKUP_SCRIPT" ]; then 
+    . "$BACKUP_SCRIPT" "$1"
+fi
+
+# Remove the zipped contents of the folder
+rm -rf "$TMP_DIR/"*
