@@ -1,13 +1,11 @@
 -- ==========================================================================================
---  Name: DataLoad.RebuildIndexesAsNecessary
---  Date: August 7, 2012
---  Author: Andrew Judd
 --  Description: Used to go through all of the tables in your specified database and
 --               check the fragmentation levels of the indexes.  If the indexes are
 --               highly fragmented, it will rebuild it, otherwise it will just try to
 --               run a reorganize.
+--  Background:  http://blog.sqlauthority.com/2007/12/22/sql-server-difference-between-index-rebuild-and-index-reorganize-explained-with-t-sql-script/
 -- ==========================================================================================
-CREATE PROCEDURE DataLoad.RebuildIndexesAsNecessary
+CREATE PROCEDURE dbo.usp_RebuildIndexesAsNecessary
 	@RebuildThreshold FLOAT = 40
 	, @FragmentationThreshold FLOAT = 10
 AS
