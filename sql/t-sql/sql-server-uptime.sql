@@ -1,6 +1,12 @@
+/**
+ * @author: Andrew Judd
+ * @reference: http://blog.andrewjudd.ca/2012/11/programmatically-determining-space-transaction-log/
+ * @link: https://github.com/awjudd/scripts/blob/master/sql/t-sql/sql-server-uptime.sql
+ * @version: 1
+ * @description: Programmatic way of determining how long both the SQL Server Agent, and the SQL Server instance have been up.
+ * @source: http://social.msdn.microsoft.com/Forums/sqlserver/en-US/3d7aa13d-61a7-48d2-ada6-2398b31feb39/how-to-check-sql-server-uptime-through-tsql
+ */
 USE master
-
--- Reference: http://social.msdn.microsoft.com/Forums/sqlserver/en-US/3d7aa13d-61a7-48d2-ada6-2398b31feb39/how-to-check-sql-server-uptime-through-tsql
 
 SET NOCOUNT ON 
 
@@ -14,13 +20,13 @@ WHERE d.name='tempdb'
 
 SELECT @Hours = (DATEDIFF(MINUTE, @CreateDate,GETDATE())) / 60 
 
-IF ((DATEDIFF ( MINUTE, @CreateDate,GETDATE()))/60)=0 
+IF ((DATEDIFF(MINUTE, @CreateDate,GETDATE()))/60)=0 
 BEGIN
-    SELECT @Minutes = (DATEDIFF ( mi, @CreateDate,GETDATE())) 
+    SELECT @Minutes = (DATEDIFF(MINUTE, @CreateDate,GETDATE())) 
 END
 ELSE 
 BEGIN
-    SELECT @Minutes=(DATEDIFF ( mi, @CreateDate,GETDATE()))-((DATEDIFF( mi, @CreateDate,GETDATE()))/60)*60 
+    SELECT @Minutes=(DATEDIFF(MINUTE, @CreateDate,GETDATE()))-((DATEDIFF(MINUTE,@CreateDate,GETDATE()))/60)*60 
 END
 
 PRINT 'SQL Server "' + CONVERT(VARCHAR(20),SERVERPROPERTY('SERVERNAME'))+'" is Online for the past ' + @Hours + ' hours & ' + @Minutes + ' minutes' 
