@@ -1,6 +1,6 @@
 /**
  * @author: Andrew Judd
- * @reference: http://blog.andrewjudd.ca/2012/11/programmatically-determining-space-transaction-log/
+ * @reference: http://blog.andrewjudd.ca/2013/08/long-sql-server-running-for/
  * @link: https://github.com/awjudd/scripts/blob/master/sql/t-sql/sql-server-uptime.sql
  * @version: 1
  * @description: Programmatic way of determining how long both the SQL Server Agent, and the SQL Server instance have been up.
