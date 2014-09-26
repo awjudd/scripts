@@ -13,6 +13,7 @@ INSERT INTO @Foo ( FooBar )
 INSERT INTO @Bar ( FooBar )
     VALUES ( 2 ), ( 5 ), ( 4 )
 
+-- Query #1
 SELECT FooBar FROM @Foo
 EXCEPT
 SELECT FooBar FROM @Bar
@@ -23,6 +24,7 @@ SELECT FooBar FROM @Bar
 EXCEPT
 SELECT FooBar FROM @Foo
 
+-- Query #2
 SELECT FooBar FROM @Bar
 EXCEPT
 SELECT FooBar FROM @Foo
@@ -33,6 +35,7 @@ SELECT FooBar FROM @Foo
 EXCEPT
 SELECT FooBar FROM @Bar
 
+-- Query #3
 SELECT *
 FROM (
     SELECT FooBar FROM @Bar
@@ -49,6 +52,7 @@ FROM (
     SELECT FooBar FROM @Bar
 ) b
 
+-- Query #4
 SELECT a.FooBar
 FROM @Foo a
 LEFT JOIN @Bar b ON a.FooBar = b.FooBar
